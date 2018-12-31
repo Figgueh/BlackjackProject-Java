@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="704.0" prefWidth="1280.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackJack.gameController">
+
+    <stylesheets>
+        <URL value="@../game/style.css" />
+    </stylesheets>
+   <children>
+
+
+       <!--Buttons for player seats-->
+       <Button fx:id="LEFTMOSTbtn" layoutX="127.0" layoutY="381.0" mnemonicParsing="false" onAction="#seatPlayer" text="Sit" visible="false" />
+       <Button fx:id="LEFTbtn" layoutX="361.0" layoutY="473.0" mnemonicParsing="false" onAction="#seatPlayer" text="Sit" visible="false" />
+       <Button fx:id="CENTERbtn" layoutX="625.0" layoutY="498.0" mnemonicParsing="false" onAction="#seatPlayer" text="Sit" visible="false" />
+       <Button fx:id="RIGHTbtn" layoutX="872.0" layoutY="473.0" mnemonicParsing="false" onAction="#seatPlayer" text="Sit" visible="false" />
+       <Button fx:id="RIGHTMOSTbtn" layoutX="1098.0" layoutY="381.0" mnemonicParsing="false" onAction="#seatPlayer" text="Sit" visible="false" />
+
+      <Pane fx:id="chips" layoutX="14.0" layoutY="14.0" prefHeight="278.0" prefWidth="288.0" visible="false">
+         <children>
+            <Button fx:id="chip5" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#editBet" prefHeight="46.0" prefWidth="30.0" style="-fx-background-color: transparent;">
+             <graphic>
+                 <ImageView fitHeight="68.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/5_chip.png" />
+                    </image>
+                 </ImageView>
+             </graphic>
+            </Button>
+             <Button fx:id="chip10" layoutX="123.0" layoutY="21.0" mnemonicParsing="false" onAction="#editBet" prefHeight="46.0" prefWidth="30.0" style="-fx-background-color: transparent;">
+                 <graphic>
+                     <ImageView fitHeight="68.0" fitWidth="71.0" preserveRatio="true">
+                         <image>
+                             <Image url="@../images/10_chip.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="chip25" layoutX="18.0" layoutY="114.0" mnemonicParsing="false" onAction="#editBet" prefHeight="46.0" prefWidth="30.0" style="-fx-background-color: transparent;">
+                 <graphic>
+                     <ImageView fitHeight="68.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@../images/25_chip.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="chip100" layoutX="124.0" layoutY="114.0" mnemonicParsing="false" onAction="#editBet" prefHeight="46.0" prefWidth="30.0" style="-fx-background-color: transparent;">
+                 <graphic>
+                     <ImageView fitHeight="68.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@../images/100_chip.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+             <Button fx:id="remove" layoutX="210.0" layoutY="71.0" mnemonicParsing="false" onAction="#editBet" prefHeight="84.0" prefWidth="87.0" style="-fx-background-color: transparent;">
+                 <graphic>
+                     <ImageView fitHeight="68.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@../images/Remove_chip.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+            <Label layoutX="39.0" layoutY="210.0" text="Amount on table: " textFill="WHITE" />
+             <Label fx:id="lblPot" layoutX="134.0" layoutY="211.0" text="0" textFill="WHITE" />
+            <Label layoutX="39.0" layoutY="237.0" text="Balance left:" textFill="WHITE" />
+            <Label fx:id="lblBalance" layoutX="104.0" layoutY="237.0" text="0" textFill="WHITE" />
+            <Button layoutX="182.0" layoutY="225.0" mnemonicParsing="false" onAction="#placeBet" text="Place Bet" />
+         </children>
+
+          
+      </Pane>
+
+       <!--LEFTMOST player grid-->
+      <GridPane fx:id="LEFTMOSTplayer" layoutX="7.0" layoutY="301.0" prefHeight="211.0" prefWidth="300.0" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+             <Label fx:id="LEFTMOSTplayerName" style="-fx-background-color: #333;" text="Player name : " textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="15.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding></Label>
+            <ImageView fx:id="LEFTMOSTplayerCards" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <Label style="-fx-background-color: #333;" text="Remaining balance :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets top="3.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+               </padding></Label>
+            <Label fx:id="LEFTMOSTplayerBalance" style="-fx-background-color: #333;" text="" textFill="YELLOW" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets top="3.0" />
+               </GridPane.margin>
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+               </padding></Label>
+            <Label style="-fx-background-color: #333;" text="Hand Value : " textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding></Label>
+            <Label fx:id="LEFTMOSTcardValue" style="-fx-background-color: #333;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding></Label>
+         </children>
+      </GridPane>
+
+       <!--LEFT player grid-->
+       <GridPane fx:id="LEFTplayer" layoutX="226.0" layoutY="395.0" prefHeight="223.0" prefWidth="300.0" visible="false">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+           <children>
+               <Label fx:id="LEFTplayerName" style="-fx-background-color: #333;" text="Player name : " textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                   <GridPane.margin>
+                       <Insets bottom="15.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                   </padding></Label>
+               <ImageView fx:id="LEFTplayerCards" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+               <Label style="-fx-background-color: #333;" text="Remaining balance :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label fx:id="LEFTplayerBalance" style="-fx-background-color: #333;" text="" textFill="YELLOW" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label style="-fx-background-color: #333;" text="Hand Value :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="3.0" left="3.0" top="3.0" />
+               </GridPane.margin></Label>
+               <Label fx:id="LEFTcardValue" style="-fx-background-color: #333;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets top="3.0" />
+               </GridPane.margin></Label>
+           </children>
+       </GridPane>
+
+       <!--CENTER player grid-->
+       <GridPane fx:id="CENTERplayer" layoutX="490.0" layoutY="417.0" prefHeight="223.0" prefWidth="300.0" visible="false">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+           <children>
+               <Label fx:id="CENTERplayerName" style="-fx-background-color: #333;" text="Player name : " textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                   <GridPane.margin>
+                       <Insets bottom="15.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                   </padding></Label>
+               <ImageView fx:id="CENTERplayerCards" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+               <Label style="-fx-background-color: #333;" text="Remaining balance :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label fx:id="CENTERplayerBalance" style="-fx-background-color: #333;" text="" textFill="YELLOW" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label style="-fx-background-color: #333;" text="Hand Value :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="3.0" top="3.0" />
+               </GridPane.margin></Label>
+               <Label fx:id="CENTERcardValue" style="-fx-background-color: #333;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="3.0" right="3.0" top="3.0" />
+               </GridPane.margin></Label>
+           </children>
+       </GridPane>
+
+       <!--RIGHT player grid-->
+       <GridPane fx:id="RIGHTplayer" layoutX="737.0" layoutY="395.0" prefHeight="223.0" prefWidth="300.0" visible="false">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+           <children>
+               <Label fx:id="RIGHTplayerName" style="-fx-background-color: #333;" text="Player name : " textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                   <GridPane.margin>
+                       <Insets bottom="15.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                   </padding></Label>
+               <ImageView fx:id="RIGHTplayerCards" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+               <Label style="-fx-background-color: #333;" text="Remaining balance :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label fx:id="RIGHTplayerBalance" style="-fx-background-color: #333;" text="" textFill="YELLOW" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label style="-fx-background-color: #333;" text="Hand Value :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="3.0" top="3.0" />
+               </GridPane.margin></Label>
+               <Label fx:id="RIGHTcardValue" style="-fx-background-color: #333;" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </GridPane.margin></Label>
+           </children>
+       </GridPane>
+
+       <!--RIGHTMOST player grid-->
+       <GridPane fx:id="RIGHTMOSTplayer" layoutX="978.0" layoutY="302.0" prefHeight="211.0" prefWidth="300.0" visible="false">
+           <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+           </columnConstraints>
+           <rowConstraints>
+               <RowConstraints maxHeight="39.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+               <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+           </rowConstraints>
+           <children>
+               <Label fx:id="RIGHTMOSTplayerName" style="-fx-background-color: #333;" text="Player name : " textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+                   <GridPane.margin>
+                       <Insets bottom="15.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                   </padding></Label>
+               <ImageView fx:id="RIGHTMOSTplayerCards" fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+               <Label style="-fx-background-color: #333;" text="Remaining balance :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label fx:id="RIGHTMOSTplayerBalance" style="-fx-background-color: #333;" text="" textFill="YELLOW" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                   <GridPane.margin>
+                       <Insets top="3.0" />
+                   </GridPane.margin>
+                   <padding>
+                       <Insets bottom="3.0" left="3.0" right="3.0" top="6.0" />
+                   </padding></Label>
+               <Label style="-fx-background-color: #333;" text="Hand Value :" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="3.0" left="3.0" top="3.0" />
+               </GridPane.margin></Label>
+               <Label fx:id="RIGHTMOSTcardValue" style="-fx-background-color: #333;" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets bottom="3.0" right="3.0" top="3.0" />
+               </GridPane.margin></Label>
+           </children>
+       </GridPane>
+
+
+      <GridPane fx:id="actionGrid" layoutX="506.0" layoutY="209.0" prefHeight="134.0" prefWidth="269.0" visible="false">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label style="-fx-background-color: #333;" text="Select your option" textFill="WHITE" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font size="25.0" />
+               </font></Label>
+            <Button fx:id="hit" mnemonicParsing="false" onAction="#sendAction" text="Hit" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="stand" mnemonicParsing="false" onAction="#sendAction" text="Stand" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+         </children>
+      </GridPane>
+      <Pane fx:id="dealerPane" layoutX="302.0" layoutY="53.0" prefHeight="194.0" prefWidth="683.0">
+         <children>
+            <ImageView fx:id="dealerCards" fitHeight="150.0" fitWidth="504.0" layoutX="65.0" layoutY="-33.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+         </children>
+      </Pane>
+
+
+   </children>
+</AnchorPane>

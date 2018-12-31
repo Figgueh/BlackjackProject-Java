@@ -1,0 +1,5 @@
+.root {
+-fx-background-image: url("../images/blackjack_table.png");
+-fx-background-color: black;
+-fx-background-repeat: no-repeat;
+}

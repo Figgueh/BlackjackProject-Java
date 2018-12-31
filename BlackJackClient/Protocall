@@ -1,0 +1,50 @@
+SERVER: Waiting for players...
+
+-   Once client is open:
+CLIENT: NP,'ID','Name','Balance','date      NP = NewPlayer
+
+-   Once player picks seat
+CLIENT: PP,'Position'       PP = PlayerPosition
+
+SERVER: READY FOR BETS
+
+-   Once player enters bet
+CLIENT: PB,'amount'     PB = PlaceBet
+
+SERVER: WAITING FOR OTHER PLAYERS   -   count down from 30 seconds.
+
+IF(SERVER.PlayerArray != 0)
+SERVER: GAME STARTED
+
+SERVER: REQUESTING ACTION.
+-   Once player gets hand, display options: HIT, STAND
+CLIENT: RA,'action'         RA = Requested action.
+
+(LOOP UNTIL ALL PLAYERS STAND){
+*All players must send an action before continuing unless previous action == stand*
+
+SERVER: PERFORMING 'action'
+
+if(action == HIT)
+SERVER: PLAYER DREW 'card'
+
+if(action == STAND)
+SERVER: PLAYER stand.
+}
+
+*At the end of every action:
+SERVER: PL,*SEND ALL PLAYER INFORMATION*        PL = Player
+*DRAW OTHER PLAYERS BASED ON RECEIVED INFORMATION IN CLIENT*
+
+FINALLY:
+-   once all players select stand;
+SERVER: DEALERS TURN
+
+- Fire blackjack logic to find out who won
+
+If (winner = dealer)
+SERVER: DW      DW = Dealer wins
+else
+SERVER: PW,'pot'      PW = Player wins
+
+
